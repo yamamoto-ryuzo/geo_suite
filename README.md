@@ -194,3 +194,16 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 ---
 
 注: このファイルは 2025-11-30 時点で各コンポーネントの README を参照して再構成しました。個別リポジトリの最新情報が必要な場合は、各リポジトリの README と `CHANGELOG.md` を参照してください。
+
+## 免責事項
+
+本システムは個人のPCで作成・テストされたものです。  
+ご利用によるいかなる損害も責任を負いません。
+
+<p align="center">
+  <a href="https://giphy.com/explore/free-gif" target="_blank">
+    <img src="https://github.com/yamamoto-ryuzo/QGIS_portable_3x/raw/master/imgs/giphy.gif" width="500" title="avvio QGIS">
+  </a>
+</p>
+
+
