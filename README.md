@@ -130,7 +130,7 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 
 
 ---
-
+ 
 ### GeoReport — レイアウト編集・出力 ＋ 報告書生成
 - リポジトリ: https://github.com/yamamoto-ryuzo/qgis-layoutitem-selector
 
@@ -164,6 +164,22 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 - 大量出力: レイアウトテンプレートを用いた一括出力（例: 100 枚の Atlas）
 
 ## 貢献
+
+## 関連ツール
+
+- `yr-qgis-launcher` — ポータブルQGIS・QField環境ランチャー
+
+- リポジトリ: https://github.com/yamamoto-ryuzo/yr-qgis-launcher
+
+- 現状（確認: 2025-11-30）:
+	- `ProjectFile.exe` による指定プロジェクトの直接起動、および権限別 UI / `startup.py` を用いたレイヤ初期化機能
+	- `local-launcher.bat` / `qgislocalsync.config` によるローカル同期（`robocopy` ベース）と、同期後の自動起動ワークフロー
+	- ポータブル版 QGIS / QField のバージョン比較による差分同期と管理、組込済みプラグインのサンプル一覧を含む
+	- Windows バッチ主体の構成のため、展開パスは英数字のみ、改行コード等の運用注意が README に記載されている
+
+- 用途:
+	- オフライン/ポータブル環境配布や、BOX 等クラウドストレージからの同期を利用した統一実行環境構築に有用
+
 
 - 各コンポーネントはそれぞれの GitHub リポジトリで管理しています。バグ報告や機能要望は該当リポジトリの Issues にお願いします。
 - ドキュメント修正・翻訳や Quickstart の改善はこのリポジトリで歓迎します。プルリクエストをお送りください。
