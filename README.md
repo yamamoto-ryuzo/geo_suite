@@ -32,16 +32,46 @@ GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出�
 
 ## Components
 
-各コンポーネントの短い概要と実リポジトリ
+以下は各コンポーネントの現状機能の詳細（現状の説明を保持）と、コンポーネント別の将来拡張候補を統合したものです。
 
-- GeoImport — 自動 GIS 化（CKAN / ローカル）
-	- リポジトリ: https://github.com/yamamoto-ryuzo/qgis-data-catalog-integration
-- GeoSearch — 地図内検索（属性・空間検索）
-	- リポジトリ: https://github.com/yamamoto-ryuzo/GEO-search-plugin
-- GeoWebView — スタイル込 Web 共有（旧: GeoView）
-	- リポジトリ: https://github.com/yamamoto-ryuzo/QMapPermalink
-- GeoReport — レイアウト編集・出力 ＋ 報告書生成
-	- リポジトリ: https://github.com/yamamoto-ryuzo/qgis-layoutitem-selector
+### GeoImport — 自動 GIS 化（CKAN / ローカル）
+- リポジトリ: https://github.com/yamamoto-ryuzo/qgis-data-catalog-integration
+- 現状の主な機能: CKAN やローカルフォルダを横断検索してデータを取得・登録するプラグイン。CSV の区切り文字・文字コードを自動判定してポイント/ライン/ポリゴンにジオメトリ化し、SQLite キャッシュで検索応答を高速化します。
+- 将来の拡張候補:
+	- STAC / DCAT によるメタデータ連携と自動インデックス化
+	- 大容量データ取り込み（並列処理・ストリーミング、S3 互換ストレージ対応）
+	- 点群（LAS/LAZ）・3D フィーチャ（CityGML / 3D Tiles）取り込み（PDAL 統合）
+	- 自動ジオリファレンス・座標系検出の改善、データ品質チェック自動化
+
+### GeoSearch — 地図内検索（属性・空間検索）
+- リポジトリ: https://github.com/yamamoto-ryuzo/GEO-search-plugin
+- 現状の主な機能: 地番・所有者・一般属性など複数種類の検索をサポートし、結果はレイヤ別タブで表示されます。`selectTheme` によるテーマ適用や「加算表示モード」で既存表示を保ちながら検索結果を重ねる運用が可能です。
+- 将来の拡張候補:
+	- 空間全文検索と属性検索の強化（PostGIS + pg_trgm / Elasticsearch / OpenSearch 連携）
+	- 空間インデックスの最適化とフェデレーション検索（複数データソース横断検索）
+	- 時系列データ・バージョン管理（履歴検索、差分抽出）
+	- 空間解析を組み込んだ検索フィルタ（バッファ、空間結合、属性スコアリング）
+	- 機械学習（空間クラスタリング、異常検知）を活用した検索補助
+
+### GeoWebView — スタイル込 Web 共有（旧: GeoView）
+- リポジトリ: https://github.com/yamamoto-ryuzo/QMapPermalink
+- 現状の主な機能: QGIS の現在表示（中心・ズーム・レイヤ可視性・スタイル）をパーマリンクや HTML/PNG パッケージに変換して社内で共有するツール。軽量 HTTP サーバーによる配信、WFS 経由の地物配信、MapLibre や OpenLayers へのスタイル注入をサポートします。
+- 将来の拡張候補:
+	- QGIS の 3D 表示スナップショットおよび Cesium / 3D Tiles へのエクスポート連携
+	- 点群ビジュアライゼーションの Web 配信（Entwine / Potree / Cesium 連携）
+	- OGC API / WebSocket によるリアルタイム更新（ライブデータ配信）
+	- ベクタタイル（MVT）生成とタイルキャッシュの自動化、CDN 配信パターン
+	- Mapbox/MapLibre GL スタイル互換の強化、アクセシビリティ・多言語化
+
+### GeoReport — レイアウト編集・出力 ＋ 報告書生成
+- リポジトリ: https://github.com/yamamoto-ryuzo/qgis-layoutitem-selector
+- 現状の主な機能: レイアウトのテンプレート保存・一括適用、レイアウト内アイテムのバッチ編集、RubberBand による印刷範囲操作、Atlas 的な複数図面の一括出力を行います。高解像度 PNG/PDF を生成すると同時に、出力メタデータ（タイトル・中心座標・スケール・レイヤ一覧等）を CSV/XLSX で出力し、画像を埋め込んだ Excel 形式の報告書を自動生成するワークフローをサポートします。
+- 将来の拡張候補:
+	- 3D スナップショットの組込み（静止画だけでなく簡易インタラクティブ HTML ビュー）
+	- 点群・断面図生成を含む高機能レポート（断面抽出、属性統計、サマリ表）
+	- Jupyter / Papermill ベースの再現可能なレポート生成フロー（データ処理 → レイアウト → エクスポート）
+	- Excel (XLSX) レポートのテンプレート化とカスタムマクロ連携、画像埋め込み・注釈の自動配置
+	- 大量出力のための分散実行（ワーカー／キュー）と途中再開（チェックポイント）機能
 
 ## Scenarios
 
