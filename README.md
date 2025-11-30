@@ -1,3 +1,5 @@
+[English version: `README_EN.md`]
+
 ## GeoSuite — QGIS デスクトップ + WebGIS フルサイクル ツールスイート
 
 GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出力（報告書生成）までをワンストップで自動化するプラグイン群です。
