@@ -2,25 +2,24 @@
 
 GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出力（報告書生成）までをワンストップで自動化するプラグイン群です。
 
-## Table of Contents
-
-- Project Overview
-- Quickstart
-- Components
-	- GeoImport
-	- GeoSearch
-	- GeoWebView
-	- GeoReport
-- Scenarios
-- Future extensions (component summaries)
-- Roadmap candidates (Now / Next / Later)
-- Contributing
-- Support & License
-
 ## Project Overview
 
 - 自動化対象: データの取り込み（ローカル/CKAN）→ 検索 → Web 共有 → レポート作成（PNG/PDF/XLSX）
 - 対象ユーザ: QGIS を業務で使い、社内共有や Web 公開を簡易化したい組織
+
+## ワークフロー概要
+
+```
+ローカル/CKAN
+	↓
+GeoImport（自動 GIS 化）
+	↓
+GeoSearch（地図内検索）
+	↓
+GeoWebView（スタイル込 Web 共有）
+	↓
+GeoReport（レイアウト編集・出力＋報告書生成）
+```
 
 ## Quickstart
 
@@ -43,6 +42,8 @@ GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出�
 	- 点群（LAS/LAZ）・3D フィーチャ（CityGML / 3D Tiles）取り込み（PDAL 統合）
 	- 自動ジオリファレンス・座標系検出の改善、データ品質チェック自動化
 
+	確認（2025-11-30）: リポジトリの `readme.md` を確認しました。以下は実装済みとして明記されています: CKAN / ローカルフォルダ対応、CSV の区切り文字・文字コード自動判定、自動ジオメトリ化（緯度経度カラム検出）、および SQLite ベースのローカルキャッシュ検索。上記の "将来の拡張候補" は README 上では未実装または今後の課題として扱われています。
+
 ### GeoSearch — 地図内検索（属性・空間検索）
 - リポジトリ: https://github.com/yamamoto-ryuzo/GEO-search-plugin
 - 現状の主な機能: 地番・所有者・一般属性など複数種類の検索をサポートし、結果はレイヤ別タブで表示されます。`selectTheme` によるテーマ適用や「加算表示モード」で既存表示を保ちながら検索結果を重ねる運用が可能です。
@@ -52,6 +53,8 @@ GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出�
 	- 時系列データ・バージョン管理（履歴検索、差分抽出）
 	- 空間解析を組み込んだ検索フィルタ（バッファ、空間結合、属性スコアリング）
 	- 機械学習（空間クラスタリング、異常検知）を活用した検索補助
+
+	確認（2025-11-30）: リポジトリの README により、ロット番号／所有者／一般属性検索、タブ毎の結果表示、`selectTheme` によるテーマ適用、加算表示モードといった基本検索・表示機能は実装済みと記載されています。上に挙げた PostGIS/Elasticsearch 等の連携や時系列管理などは README 上では将来の拡張候補として扱われています。
 
 ### GeoWebView — スタイル込 Web 共有（旧: GeoView）
 - リポジトリ: https://github.com/yamamoto-ryuzo/QMapPermalink
@@ -63,6 +66,8 @@ GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出�
 	- ベクタタイル（MVT）生成とタイルキャッシュの自動化、CDN 配信パターン
 	- Mapbox/MapLibre GL スタイル互換の強化、アクセシビリティ・多言語化
 
+	確認（2025-11-30）: `QMapPermalink` リポジトリの README を確認しました。パーマリンク生成、軽量 HTTP サーバーによる配信、WFS 経由の地物配信、MapLibre / OpenLayers へのスタイル注入、高解像度 PNG 出力、Office 連携（Excel/PowerPoint 用テンプレ）などは実装済みとしてドキュメント化されています。一方、ベクタタイルサーバ（VectorTile）の導入は README に "あきらめた開発" として明記されており、当面は開発保留である点を注記します。上記の 3D スナップショットや点群の Web 配信は現状 README 上では将来の拡張候補です。
+
 ### GeoReport — レイアウト編集・出力 ＋ 報告書生成
 - リポジトリ: https://github.com/yamamoto-ryuzo/qgis-layoutitem-selector
 - 現状の主な機能: レイアウトのテンプレート保存・一括適用、レイアウト内アイテムのバッチ編集、RubberBand による印刷範囲操作、Atlas 的な複数図面の一括出力を行います。高解像度 PNG/PDF を生成すると同時に、出力メタデータ（タイトル・中心座標・スケール・レイヤ一覧等）を CSV/XLSX で出力し、画像を埋め込んだ Excel 形式の報告書を自動生成するワークフローをサポートします。
@@ -73,61 +78,13 @@ GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出�
 	- Excel (XLSX) レポートのテンプレート化とカスタムマクロ連携、画像埋め込み・注釈の自動配置
 	- 大量出力のための分散実行（ワーカー／キュー）と途中再開（チェックポイント）機能
 
+	確認（2025-11-30）: `qgis-layoutitem-selector` の README を確認しました。レイアウトテンプレートの保存・一括適用、レイアウト内アイテムのバッチ編集、印刷範囲の地図キャンバス表示や RubberBand による操作、多言語対応などは実装済みと記載されています。一方で「画像を埋め込んだ Excel 形式の報告書を自動生成する」ワークフローや Jupyter/Papermill による再現可能レポートの実装については README 上で明確な実装記載が見当たりませんでしたので、これらは将来の拡張候補として扱うのが現状に即しています。
+
 ## Scenarios
 
 - 社内報告書作成: `GeoImport` → `GeoSearch` → `GeoWebView` → `GeoReport`
 - Web 地図公開: `GeoWebView` でパッケージ化・パーマリンク共有
 - 大量出力: レイアウトテンプレートを用いた一括出力（例: 100 枚の Atlas）
-
-## Future extensions (component summaries)
-
-- GeoImport — [高]
-	- STAC / DCAT メタデータ連携、自動インデックス化
-	- 大容量・ストリーミング取り込み、S3 対応
-	- 点群（LAS/LAZ）・3D フィーチャ取り込み（PDAL / 3D Tiles）
-
-- GeoSearch — [高]
-	- 空間全文検索、フェデレーション検索、時系列（履歴）対応
-	- 空間解析フィルタと ML 補助
-
-- GeoWebView — [高〜中]
-	- QGIS 3D スナップショット → Cesium/3D Tiles 連携
-	- 点群配信（Entwine / Potree）、OGC API リアルタイム配信
-	- ベクタタイル (MVT) 生成と CDN 配信、自動スタイル注入
-
-- GeoReport — [中〜高]
-	- 3D スナップショット、点群断面・統計の組込レポート
-	- Jupyter / Papermill を用いた再現可能なワークフロー
-	- Excel テンプレート・画像埋め込み・分散バッチ出力
-
-- 共通プラットフォーム — [高]
-	- OGC API（Features/Maps）対応、COG/MBTiles サポート
-	- コンテナ化（Docker）・CI/CD・監視（Prometheus/Grafana）
-	- 認証（OAuth2/SAML）、監査ログ、テレメトリ
-
-## Roadmap candidates (Now / Next / Later)
-
-- Now (短期、優先)
-	- GeoImport: STAC/DCAT メタデータ連携（PoC）
-	- GeoReport: XLSX 自動生成の PoC（サンプルテンプレート）
-
-- Next (中期)
-	- GeoWebView: Cesium への 3D エクスポート PoC
-	- GeoSearch: フェデレーション検索（複数データソース）
-
-- Later (長期)
-	- 大規模点群パイプライン（Entwine / Potree / PDAL の本格導入）
-	- フルクラウド配信＋認証・監査対応
-
-## Contributing
-
-- 開発・PR の流れ
-	1. Issue を立てる（目的・再現手順・期待結果）
-	2. 小さなブランチを切って実装、テストを追加
-	3. PR を作成してレビュアーを指名
-
-- 開発環境（簡易）
-	- 推奨: Python 仮想環境 + QGIS 開発用プラグインのローカル読み込み
 
 ## Support & License
 
@@ -135,5 +92,3 @@ GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出�
 - ライセンス: リポジトリごとの README を参照してください。
 
 ---
-
-（必要であれば、この構成で Quickstart の手順や Contributing の詳細テンプレを追加します）
