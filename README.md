@@ -5,7 +5,7 @@
 GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出力（報告書生成）までをワンストップで自動化するプラグイン群です。  
 他のシステムも含めた総合的なイメージはこんな感じ。  
 <img width="1086" height="609" alt="image" src="https://github.com/user-attachments/assets/532e200b-e794-484a-9e50-3f19567d6936" />
-<img width="1067" height="607" alt="image" src="https://github.com/user-attachments/assets/4c62713c-8050-4402-a0ef-2921b894e85d" />
+<img width="1092" height="613" alt="image" src="https://github.com/user-attachments/assets/5dc3503f-20d4-40f1-b9b9-94af161ca95a" />
 
 ## プロジェクト概要
 
