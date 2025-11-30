@@ -1,4 +1,4 @@
-[English version: `README_EN.md`]
+[English: [README_EN.md](README_EN.md)]
 
 ## GeoSuite — QGIS デスクトップ + WebGIS フルサイクル ツールスイート
 

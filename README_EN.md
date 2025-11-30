@@ -1,4 +1,4 @@
-[日本語版: `README.md`]
+[日本語: [README.md](README.md)]
 
 ## GeoSuite — QGIS Desktop + WebGIS Full-cycle Tool Suite
 
