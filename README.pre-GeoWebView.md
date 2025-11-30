@@ -1,6 +1,6 @@
 ## GeoSuite — QGIS デスクトップ + WebGIS フルサイクル ツールスイート
 
-GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出力（書類化）までをワンストップで自動化するプラグイン群です。4 つのプラグイン（`GeoImport` / `GeoSearch` / `GeoWebView` / `GeoReport`）により、ワークフロー「データ取得 → 検索 → Web 共有 → 出力（報告書生成）」をスムーズに実行できます。
+GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出力（書類化）までをワンストップで自動化するプラグイン群です。4 つのプラグイン（`GeoImport` / `GeoSearch` / `GeoView` / `GeoReport`）により、ワークフロー「データ取得 → 検索 → Web 共有 → 出力（報告書生成）」をスムーズに実行できます。
 
 ## 概要
 
@@ -16,7 +16,7 @@ GeoImport（自動 GIS 化）
 	↓
 GeoSearch（地図内検索）
 	↓
-GeoWebView（スタイル込 Web 共有 — 旧: `GeoView`）
+GeoView（スタイル込 Web 共有）
 	↓
 GeoReport（レイアウト編集・出力＋報告書生成）
 ```
@@ -27,13 +27,13 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 |---|---:|---|
 | GeoImport | データ探索 → GIS 化 | CKAN/ローカル自動判定、CSV のジオメトリ化、自動インポート |
 | GeoSearch | プロジェクト内地図検索 | 地番/所有者/属性検索、PostGIS 対応の高度検索機能 |
-| GeoWebView | QGIS → Web 共有（スタイル込） | パーマリンク生成、MapLibre スタイル注入、WFS 配信 |
+| GeoView | QGIS → Web 共有（スタイル込） | パーマリンク生成、MapLibre スタイル注入、WFS 配信 |
 | GeoReport | レイアウト編集 → 出力 ＋ 報告書生成 | レイアウトテンプレート一括適用、レイアウト内アイテムのバッチ編集、RubberBand 印刷範囲、Atlas 一括出力。高解像度 PNG/PDF を生成すると同時に、出力メタデータ（タイトル・中心座標・スケール・レイヤ一覧等）を CSV/XLSX で出力し、画像を埋め込んだ Excel 形式の報告書を自動生成するワークフローをサポートします。 |
 
 ## 活用シナリオ
 
-- 社内報告書作成: `GeoImport` → `GeoSearch` → `GeoWebView`（Excel リンク生成）→ `GeoReport`（高解像度 PNG/PDF とメタを出力し、Excel で一覧・説明資料を自動作成）
-- Web 地図公開: `GeoWebView` で Re:Earth / MapLibre にスタイル転写、パーマリンク共有
+- 社内報告書作成: `GeoImport` → `GeoSearch` → `GeoView`（Excel リンク生成）→ `GeoReport`（高解像度 PNG/PDF とメタを出力し、Excel で一覧・説明資料を自動作成）
+- Web 地図公開: `GeoView` で Re:Earth / MapLibre にスタイル転写、パーマリンク共有
 - 大量出力: `GeoExport` のテンプレート機能で複数地域（例: 100 枚）を一括生成
 
 ## 使い始め
@@ -54,7 +54,7 @@ GeoSuite の各コンポーネントと現状リポジトリは以下の通り�
 ### `GeoSearch`（地図内検索）  
  `https://github.com/yamamoto-ryuzo/GEO-search-plugin`   
  — 完成済みの検索モジュール。地番・所有者・一般属性など複数種類の検索をサポートし、結果はレイヤ別タブで表示されます。`selectTheme` によるテーマ適用や「加算表示モード」で既存表示を保ちながら検索結果を重ねる運用が可能です。
-### `GeoWebView`（スタイル込 Web 共有 — 旧: `GeoView`）
+### `GeoView`（スタイル込 Web 共有）
  `https://github.com/yamamoto-ryuzo/QMapPermalink`   
  — QGIS の現在表示（中心・ズーム・レイヤ可視性・スタイル）をパーマリンクや HTML/PNG パッケージに変換して社内で共有するツールです。軽量 HTTP サーバーによる配信、WFS 経由の地物配信、MapLibre や OpenLayers へのスタイル注入をサポートします。
 ### `GeoReport`（旧: `GeoLayout` / `GeoExport` — レイアウト / 報告書生成）
@@ -63,4 +63,4 @@ GeoSuite の各コンポーネントと現状リポジトリは以下の通り�
 
 ## 注
 
--- 上記リポジトリは開発段階の名称や構成が含まれるため、将来的にコンポーネント名（GeoImport/GeoWebView/GeoExport）へ統一する予定です。リンク先の README を参照して最新状況を確認してください。
+- 上記リポジトリは開発段階の名称や構成が含まれるため、将来的にコンポーネント名（GeoImport/GeoView/GeoExport）へ統一する予定です。リンク先の README を参照して最新状況を確認してください。
