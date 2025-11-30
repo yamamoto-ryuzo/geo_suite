@@ -4,19 +4,19 @@ GeoSuite は QGIS を中核に、データ取得から検索、Web 共有、出�
 
 ## 目次
 
-- Project Overview
-- Quickstart
-- Components
+- プロジェクト概要
+- クイックスタート
+- コンポーネント
 	- GeoImport
 	- GeoSearch
 	- GeoWebView
 	- GeoReport
-- Scenarios
-- Roadmap
-- Contributing
-- Support & License
+- 想定シナリオ
+- ロードマップ
+- 貢献
+- サポートとライセンス
 
-## Project Overview
+## プロジェクト概要
 
 - 自動化対象: データの取り込み（ローカル/CKAN）→ 検索 → Web 共有 → レポート作成（PNG/PDF/XLSX）
 - 対象ユーザ: QGIS を業務で使い、社内共有や Web 公開を簡易化したい組織
@@ -35,7 +35,7 @@ GeoWebView（スタイル込 Web 共有）
 GeoReport（レイアウト編集・出力＋報告書生成）
 ```
 
-## Quickstart
+## クイックスタート
 
 1. QGIS に各プラグインをインストール（各リポジトリの README を参照）
 2. `GeoImport` でデータを登録（CSV/CKAN）
@@ -45,7 +45,7 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 
 > 注: Excel (XLSX) 形式で画像を埋め込んだ「完全自動」報告書生成については各プラグイン README の記載に差異があり、現時点では `GeoReport` の機能として README に確定的に記載されていない部分があります。以下の Components セクションで実装状況を明示しています。
 
-## Components
+## コンポーネント
 
 各コンポーネントは独立したリポジトリで管理されています。ここでは 2025-11-30 時点で各リポジトリ README から確認できた「実装済み（現状）」と、README 上で未実装・今後の課題として扱われている項目を「将来の拡張候補」として明確に分離しています。
 
@@ -99,8 +99,8 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 	- ベクタタイルサーバ（VectorTile）導入は README にて "あきらめた開発" と明記されており、当面は開発保留です。
 
 - 将来の拡張候補:
-	- QGIS 3D 表示のスナップショット / Cesium 等へのエクスポート連携
-	- 点群ビジュアライゼーション（Entwine / Potree / Cesium 連携）
+	- QGIS 3D 表示のスナップショット / Cesium・Re:Earth　へのエクスポート連携
+	- 点群ビジュアライゼーション（Entwine / Potree / Cesium・Re:Earth 連携）
 	- OGC API / WebSocket を使ったリアルタイム更新
 	- ベクタタイル生成・タイルキャッシュ・CDN 配信パターン
 
@@ -125,24 +125,18 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 
 ---
 
-## Scenarios
+## 想定シナリオ
 
 - 社内報告書作成: `GeoImport` → `GeoSearch` → `GeoWebView` → `GeoReport`
 - Web 地図公開: `GeoWebView` でパッケージ化・パーマリンク共有
 - 大量出力: レイアウトテンプレートを用いた一括出力（例: 100 枚の Atlas）
 
-## Roadmap（候補）
-
-- Now: 安定化とドキュメント整備（各プラグインの README をソースとする）
-- Next: Quickstart の強化（コマンド例・スクリーンショット）と CI での自動チェック
-- Later: 3D/点群対応、STAC/DCAT 連携、OGC API / ベクタタイル、分散バッチ出力
-
-## Contributing
+## 貢献
 
 - 各コンポーネントはそれぞれの GitHub リポジトリで管理しています。バグ報告や機能要望は該当リポジトリの Issues にお願いします。
 - ドキュメント修正・翻訳や Quickstart の改善はこのリポジトリで歓迎します。プルリクエストをお送りください。
 
-## Support & License
+## サポートとライセンス
 
 - 問い合わせ: 各リポジトリの Issues を利用してください。
 - ライセンス: 各リポジトリの README / LICENSE を参照してください。
