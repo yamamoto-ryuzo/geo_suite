@@ -105,7 +105,7 @@ GeoReport（レイアウト編集・出力＋報告書生成）
 ---
 
 ### GeoWebView — スタイル込 Web 共有
-- リポジトリ: [https://github.com/yamamoto-ryuzo/QMapPermalink](https://github.com/yamamoto-ryuzo/geo_webview)
+- リポジトリ: https://github.com/yamamoto-ryuzo/geo_webview
 
 - 現状（確認: 2025-11-30）:
 	- QGIS の表示状態（中心・ズーム・レイヤ可視性・スタイル）をパーマリンク、HTML/PNG パッケージとして出力
